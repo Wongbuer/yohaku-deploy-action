@@ -23,7 +23,7 @@ on:
 
 permissions: write-all
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name == 'workflow_dispatch' && !inputs.deploy && 'validate' || 'deploy' }}
   cancel-in-progress: true
 
 env:
